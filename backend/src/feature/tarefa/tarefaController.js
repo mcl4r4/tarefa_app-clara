@@ -36,3 +36,16 @@ export const cadastrarTarefa = async (request, response, next) => {
     console.log(error)
   }
 }
+
+export const listarTarefas = async (request, response, next) => {
+  try {
+    const tarefas = await tarefaModel.findAll({
+      attributes:["id", "titulo", "descricao", "status"]
+    })
+
+    response.status(200).json({tarefas})
+
+  } catch (error) {
+    next(error)
+  }
+}
