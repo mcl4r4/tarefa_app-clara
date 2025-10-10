@@ -5,10 +5,11 @@ export function TarefaList({ tarefas }) {
         <ul className="tarefa-list">
             {tarefas.map((tarefa) => (
                 <li key={tarefa.id} className={`tarefa-item ${tarefa.status ? 'concluido' : ``}`}>
+                    
                     <div className="tarefa-header">
                         <h3>{tarefa.titulo}</h3>
                         <span className="tarefa-status">
-                            {tarefa.status ? "concluida 😎" : "Pendente 😖"}
+                            {tarefa.status ? "Concluída 😎" : "Pendente 😖"}
                         </span>
                     </div>
 
@@ -16,8 +17,12 @@ export function TarefaList({ tarefas }) {
                     <p className="tarefa-data">{tarefa.data_prazo}</p>
 
                     <div className="tarefa-actions">
-                        <button className="btn-concluir">Concluir</button>
-                        <button className="btn-deletar">Deletar</button>
+                        <button className="btn-concluir" onClick={() => { }}>
+                          {tarefa.status ? 'Desmarca' : 'Concluir'}
+                        </button>
+                        <button className="btn-deletar" onClick={() => { }}>
+                            Deletar
+                        </button>
                     </div>
                 </li>
             ))}

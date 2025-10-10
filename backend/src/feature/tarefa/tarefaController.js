@@ -19,7 +19,7 @@ export const cadastrarTarefa = async (request, response, next) => {
       err.statusCode = 400;
       throw err
     }
-    await tarefaModel.create({
+   const novaTarefa = await tarefaModel.create({
       titulo,
       descricao,
       data_prazo
@@ -28,7 +28,8 @@ export const cadastrarTarefa = async (request, response, next) => {
     response.status(201).json({
       success: true,
       statusCode: 201,
-      message: "Tarefa cadastrada!"
+      message: "Tarefa cadastrada!",
+      novaTarefa
     })
 
   } catch (error) {

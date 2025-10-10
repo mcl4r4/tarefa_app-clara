@@ -1,7 +1,7 @@
 import "./style.css";
 import { useState } from "react";
 
-export function TarefaForm() {
+export function TarefaForm({ onNovaTarefa }) {
 
     const [titulo, setTitulo] = useState("");
     const [descricao, setDescricao] = useState("");
@@ -29,13 +29,14 @@ export function TarefaForm() {
             const data = await response.json()
             console.log(data)
 
-            if(response.ok){
-                alert("Tarefa cadastrada")
+            if (response.ok) {
+                // alert("Tarefa cadastrada")
+                onNovaTarefa(data.novaTarefa)
 
                 setTitulo('')
                 setDescricao('')
                 setDataPrazo('')
-            }else{
+            } else {
                 alert("Erro, ", data.message)
             }
         } catch (error) {

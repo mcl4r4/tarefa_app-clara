@@ -20,6 +20,7 @@ function App() {
         }
 
         const data = await response.json()
+        
         console.log(data.tarefas)
         setTarefas(data.tarefas)
       } catch (error) {
@@ -31,6 +32,10 @@ function App() {
     fetchTarefas()
 
   }, [])
+
+  const adicionarTarefa = (novaTarefa) => {
+    setTarefas((prev) => [...prev, novaTarefa])
+  }
 
   if (loading) {
     return <p>Carregando Tarefas</p>
@@ -44,11 +49,11 @@ function App() {
       <Header />
 
       <main>
-        <TarefaForm />
+        <TarefaForm onNovaTarefa={adicionarTarefa} />
         <TarefaList tarefas={tarefas} />
       </main>
     </div>
   )
 }
 
-export default App
+export default App;
